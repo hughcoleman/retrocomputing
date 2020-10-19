@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# ...but allow lpt output files
+!printer.out
