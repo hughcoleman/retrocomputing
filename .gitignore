@@ -32,4 +32,4 @@
 *.app
 
 # ...but allow lpt output files
-!printer.out
+!lpt.out
