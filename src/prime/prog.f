@@ -11,46 +11,31 @@ C     LICENSE.)                                                         7
  12   FORMAT ( 1I5, 13H IS NOT PRIME )                                  11      
                                                                         12      
 C     READ AN 5 DIGIT INTEGER FROM THE CARD READER. EXIT THE PROGRAM IF 13      
-C     THE QUERIED INTEGER IS 0. THEN, CONSIDER THE PRIMALITY EDGE-CASES 14      
+C     THE QUERIED INTEGER IS -1. THEN, CONSIDER THE PRIMALITY EDGE-CASES14      
 C     SUCH AS 1 (NOT PRIME) AND 2 (PRIME.)                              15      
  20   READ 10, N                                                        16      
-      IF (N) 9999, 9999, 21                                             17      
+      IF (N+1) 9999, 9999, 21                                           17      
  21   IF (N-1) 9999, 120, 22                                            18      
  22   IF (N-2) 9999, 110, 30                                            19      
                                                                         20      
-C     FOR SOME REASON, MOD() IS NOT A FUNCTION AVAILABLE TO FORTRAN. SO 21      
-C     INSTEAD, MODULO OPERATIONS ARE PERFORMED THROUGH REPEATED         22      
-C     SUBTRACTION.                                                      23      
+C     FIRST, CHECK IF N IS EVEN. THIS QUICKLY ELIMINATES A LARGE PORTION21      
+C     OF THE SEARCH SPACE.                                              22      
+ 30   IF (XMODF(N, 2)) 9999, 120, 40                                    23      
                                                                         24      
-C     FIRST, CHECK IF N IS EVEN. THIS QUICKLY ELIMINATES A LARGE PORTION25      
-C     OF THE SEARCH SPACE.                                              26      
- 30   IREM = N                                                          27      
- 31   IREM = IREM - 2                                                   28      
-      IF (IREM) 32, 31, 31                                              29      
- 32   IREM = IREM + 2                                                   30      
-                                                                        31      
-      IF (IREM) 9999, 120, 40                                           32      
-                                                                        33      
-C     THEN, LOOP OVER ODD INTEGERS FROM 3 TO SQRT(N) AND CONSIDER EACH  34      
-C     ONE AS A POTENTIAL FACTOR.                                        35      
- 40   IFAC = 3                                                          36      
- 50   IF (N - IFAC**2) 110, 60, 60                                      37      
-C         COMPUTE (IREM := N MOD IFAC) VIA REPEATED SUBTRACTION.        38      
- 60       IREM = N                                                      39      
- 61       IREM = IREM - IFAC                                            40      
-          IF (IREM) 62, 61, 61                                          41      
- 62       IREM = IREM + IFAC                                            42      
-                                                                        43      
-C         IF IREM = 0, THEN IFAC DIVIDES N AND N IS NOT PRIME.          44      
-          IF (IREM) 9999, 120, 70                                       45      
-C         OTHERWISE, IFAC DOES NOT DIVIDE N AND WE CONSIDER THE NEXT    46      
-C         LARGEST POSSIBLE FACTOR.                                      47      
- 70       IFAC = IFAC + 2                                               48      
-      GOTO 50                                                           49      
-                                                                        50      
- 110  PRINT 11, N                                                       51      
-      GOTO 20                                                           52      
- 120  PRINT 12, N                                                       53      
-      GOTO 20                                                           54      
-                                                                        55      
- 9999 STOP                                                              56      
+C     THEN, LOOP OVER ODD INTEGERS FROM 3 TO SQRT(N) AND CONSIDER EACH  25      
+C     ONE AS A POTENTIAL FACTOR.                                        26      
+ 40   IFAC = 3                                                          27      
+ 41   IF (N - IFAC**2) 110, 42, 42                                      28      
+C         IF IFAC DIVIDES N THEN N IS NOT PRIME.                        29      
+ 42       IF (XMODF(N, IFAC)) 9999, 120, 43                             30      
+C         OTHERWISE, IFAC DOES NOT DIVIDE N AND WE CONSIDER THE NEXT    31      
+C         LARGEST POSSIBLE FACTOR.                                      32      
+ 43       IFAC = IFAC + 2                                               33      
+      GOTO 41                                                           34      
+                                                                        35      
+ 110  PRINT 11, N                                                       36      
+      GOTO 20                                                           37      
+ 120  PRINT 12, N                                                       38      
+      GOTO 20                                                           39      
+                                                                        40      
+ 9999 STOP                                                              41      
