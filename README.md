@@ -1,10 +1,10 @@
 <h3 align="center">fortran</h3>
 
 <p align="center">
-  <b>Unearthing '50s-'60s FORTRAN.</b>
+  <b>Unearthing FORTRAN, the "<a href="https://archive.computerhistory.org/resources/text/Fortran/102649787.05.01.acc.pdf">Automatic Coding System for the IBM 704</a>."</b>
 </p>
 
-These programs are written in FORTRAN II(-ish) for the [IBM 704](https://github.com/rhobbie/Sim704), and thus will require tweaking before they run on [your mainframe computer of choice](https://github.com/simh/simh).
+These programs are (mostly) written in FORTRAN I(-ish) for the [IBM 704](https://github.com/rhobbie/Sim704); they will likely require tweaking before they compile on [your mainframe computer of choice](https://github.com/simh/simh).
 
 ###### Why?
 
