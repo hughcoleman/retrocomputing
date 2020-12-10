@@ -21,7 +21,7 @@ C     LICENSE.)                                                         7
  210          ITMP = IVEC(J)                                            21      
               IVEC(J) = IVEC(J + 1)                                     22      
               IVEC(J + 1) = ITMP                                        23      
-	      IBUB = J                                                     24      
+	      IBUB = J                                                  24      
  220      CONTINUE                                                      25      
  230  CONTINUE                                                          26      
                                                                         27      
