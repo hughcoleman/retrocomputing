@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# fmt.py
+# verify.py
 # Copyright (c) 2020 Hugh Coleman
 #
 # This file is part of hughcoleman/fortran, an attempt to investigate the
