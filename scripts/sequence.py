@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# sequencer.py
+# sequence.py
 # Copyright (c) 2020 Hugh Coleman
 #
 # This file is part of hughcoleman/fortran, an attempt to investigate the
 # FORTRAN programming language and learn about the early days of computing. It
 # is released under the MIT License (see LICENSE.)
 
-""" This script accepts a FORTRAN program and automatically sequences the 
+""" This script accepts a FORTRAN program and automatically sequences the
 statements.
 """
 
